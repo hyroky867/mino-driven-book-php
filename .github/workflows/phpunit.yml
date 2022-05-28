@@ -1,0 +1,67 @@
+name: UnitTest
+on: [ pull_request ]
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: SetUp PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: '8.1'
+          extension-csv: mbstring, xdebug
+
+      - name: Cache vendor
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ./vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('./composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Composer install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: composer install -n --prefer-dist
+
+      - name: Composer Dump Autoload
+        run: composer dump-autoload -q
+
+      - name: Execute Test
+        run: |
+          ./vendor/bin/phpunit ./tests --coverage-text="./coverage/coverage.log" --colors=never
+          cat ./coverage/coverage.log
+
+      - name: Cat Test Result
+        run: |
+          cat ./coverage/coverage.log
+        if: ${{ failure() }}
+
+      - name: Sed Coverage Report
+        run: |
+          sed -E "s/"$'\E'"\[([0-9]{1,2}(;[0-9]{1,2})*)?m//g" | \
+          grep "Code Coverage Report:" -A6 ./coverage/coverage.log | sed -e "s/^ *//" | sed -e "s/ *$//" | sed -e "/^ *$/d" > coverage/summary.log
+
+      - name: Read coverage summary
+        id: coverage-summary
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./coverage/summary.log
+
+      - name: Comment Coverage Summary
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: coverage-summary
+          message: |
+            ## Coverage Summary
+            ${{ steps.coverage-summary.outputs.content }}
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: ./coverage/summary.log
