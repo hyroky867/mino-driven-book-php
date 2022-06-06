@@ -10,7 +10,7 @@ class HitPoint
 {
     private const MIN = 0;
     private const MAX = 999;
-    readonly public int $value;
+    public readonly int $value;
 
     final public function __construct(int $value)
     {

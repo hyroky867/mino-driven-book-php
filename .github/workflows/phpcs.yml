@@ -1,0 +1,42 @@
+name: PHPCS
+
+on: pull_request
+
+jobs:
+  runPHPCSInspection:
+    name: Run PHPCS inspection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+          tools: composer, cs2pr, phpcs
+
+      - name: Cache vendor
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ./vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('./composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Composer install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: composer install -n --prefer-dist
+
+      - name: Composer Dump Autoload
+        run: composer dump-autoload -q
+
+      - name: Check PHP code style
+        continue-on-error: true
+        run: touch ./phpcs-report.xml | phpcs --report-full --report-checkstyle=./phpcs-report.xml --standard=phpcs.xml -v --report=checkstyle src tests
+
+      - name: Show PHPCS results in PR
+        run: cs2pr ./phpcs-report.xml
