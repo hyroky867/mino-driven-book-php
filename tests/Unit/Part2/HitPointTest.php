@@ -14,8 +14,8 @@ class HitPointTest extends TestCase
     public function 値が最小値よりも下回る場合、例外が帰るべき(): void
     {
         $value = -1;
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('0以上を指定してください');
+        $this->expectException(exception: InvalidArgumentException::class);
+        $this->expectExceptionMessage(message: '0以上を指定してください');
 
         new HitPoint(value: $value);
     }
@@ -24,8 +24,8 @@ class HitPointTest extends TestCase
     public function 値が最小値よりも上回る場合、例外が帰るべき(): void
     {
         $value = 1000;
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('999以下を指定してください');
+        $this->expectException(exception: InvalidArgumentException::class);
+        $this->expectExceptionMessage(message: '999以下を指定してください');
 
         new HitPoint(value: $value);
     }
@@ -37,10 +37,10 @@ class HitPointTest extends TestCase
         $point = new HitPoint(value: $value);
 
         $damageAmount = 3;
-        $actual = $point->damage($damageAmount);
+        $actual = $point->damage(damageAmount: $damageAmount);
 
         $expected = $value - $damageAmount;
-        $this->assertSame($expected, $actual->value);
+        $this->assertSame(expected: $expected, actual: $actual->value);
     }
 
     /** @test */
@@ -50,10 +50,10 @@ class HitPointTest extends TestCase
         $point = new HitPoint(value: $value);
 
         $damageAmount = 100;
-        $actual = $point->damage($damageAmount);
+        $actual = $point->damage(damageAmount: $damageAmount);
 
         $expected = 0;
-        $this->assertSame($expected, $actual->value);
+        $this->assertSame(expected: $expected, actual: $actual->value);
     }
 
     /** @test */
@@ -63,10 +63,10 @@ class HitPointTest extends TestCase
         $point = new HitPoint(value: $value);
 
         $recoverAmount = 3;
-        $actual = $point->recover($recoverAmount);
+        $actual = $point->recover(recoveryAmount: $recoverAmount);
 
         $expected = $value + $recoverAmount;
-        $this->assertSame($expected, $actual->value);
+        $this->assertSame(expected: $expected, actual: $actual->value);
     }
 
     /** @test */
@@ -76,9 +76,9 @@ class HitPointTest extends TestCase
         $point = new HitPoint(value: $value);
 
         $damageAmount = 1000;
-        $actual = $point->recover($damageAmount);
+        $actual = $point->recover(recoveryAmount: $damageAmount);
 
         $expected = 999;
-        $this->assertSame($expected, $actual->value);
+        $this->assertSame(expected: $expected, actual: $actual->value);
     }
 }

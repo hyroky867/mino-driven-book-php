@@ -15,10 +15,10 @@ class HitPoint
     final public function __construct(int $value)
     {
         if ($value < self::MIN) {
-            throw new InvalidArgumentException(self::MIN . '以上を指定してください');
+            throw new InvalidArgumentException(message: self::MIN . '以上を指定してください');
         }
         if (self::MAX < $value) {
-            throw new InvalidArgumentException(self::MAX . '以下を指定してください');
+            throw new InvalidArgumentException(message: self::MAX . '以下を指定してください');
         }
         $this->value = $value;
     }

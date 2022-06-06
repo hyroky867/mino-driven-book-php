@@ -1,10 +1,10 @@
-name: PHPCS
+name: lint
 
 on: pull_request
 
 jobs:
-  runPHPCSInspection:
-    name: Run PHPCS inspection
+  lint:
+    name: Run PHP code lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
         with:
           php-version: '8.1'
           coverage: none
-          tools: composer, cs2pr, phpcs
+          tools: composer, cs2pr, phpcs, phpstan
 
       - name: Cache vendor
         id: cache
@@ -34,9 +34,12 @@ jobs:
       - name: Composer Dump Autoload
         run: composer dump-autoload -q
 
-      - name: Check PHP code style
+      - name: PHPCS
         continue-on-error: true
         run: touch ./phpcs-report.xml | phpcs --report-full --report-checkstyle=./phpcs-report.xml --standard=phpcs.xml -v --report=checkstyle src tests
 
       - name: Show PHPCS results in PR
         run: cs2pr ./phpcs-report.xml
+
+      - name: PHPStan
+        run: phpstan analyse --error-format=checkstyle --configuration=phpstan.neon | cs2pr
