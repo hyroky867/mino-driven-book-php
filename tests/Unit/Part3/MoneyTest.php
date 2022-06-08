@@ -51,15 +51,20 @@ class MoneyTest extends TestCase
     public function add_加算できるべき(): void
     {
         $amount = 10;
+        $currency = new class implements Currency {
+        };
         $money = new Money(
             amount: $amount,
-            currency: new class implements Currency {
-            },
+            currency: $currency,
         );
 
         $other = 2;
+        $other_money = new Money(
+            amount: $other,
+            currency: $currency,
+        );
 
-        $actual = $money->add(other: $other);
+        $actual = $money->add(other: $other_money);
 
         $expected = $amount + $other;
         $this->assertSame(

@@ -17,9 +17,9 @@ class Money
         }
     }
 
-    public function add(int $other): Money
+    public function add(Money $other): Money
     {
-        $added = $this->amount + $other;
+        $added = $this->amount + $other->amount;
         return new Money(
             amount: $added,
             currency: $this->currency,
