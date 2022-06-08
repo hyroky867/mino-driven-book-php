@@ -9,16 +9,20 @@ use InvalidArgumentException;
 class Money
 {
     public function __construct(
-        public int $amount,
-        public Currency $currency,
+        public readonly int $amount,
+        public readonly Currency $currency,
     ) {
         if ($this->amount < 0) {
             throw new InvalidArgumentException(message: '金額が0以上ではありません');
         }
     }
 
-    public function add(int $other): void
+    public function add(int $other): Money
     {
-        $this->amount += $other;
+        $added = $this->amount + $other;
+        return new Money(
+            amount: $added,
+            currency: $this->currency,
+        );
     }
 }

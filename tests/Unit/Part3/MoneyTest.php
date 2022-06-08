@@ -59,12 +59,12 @@ class MoneyTest extends TestCase
 
         $other = 2;
 
-        $money->add(other: $other);
+        $actual = $money->add(other: $other);
 
         $expected = $amount + $other;
         $this->assertSame(
             expected: $expected,
-            actual: $money->amount,
+            actual: $actual->amount,
         );
     }
 }
