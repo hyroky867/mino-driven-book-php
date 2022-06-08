@@ -19,6 +19,10 @@ class Money
 
     public function add(Money $other): Money
     {
+        if ($this->currency->isEquals(currency: $other->currency) === false) {
+            throw new InvalidArgumentException(message: '通貨単位が違います');
+        }
+
         $added = $this->amount + $other->amount;
         return new Money(
             amount: $added,

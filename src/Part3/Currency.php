@@ -6,4 +6,5 @@ namespace App\Part3;
 
 interface Currency
 {
+    public function isEquals(Currency $currency): bool;
 }

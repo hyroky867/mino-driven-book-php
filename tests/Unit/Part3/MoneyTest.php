@@ -9,12 +9,18 @@ use App\Part3\Money;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class MoneyTest extends TestCase
 {
     /** @test */
     public function 値がセットできるべき(): void
     {
         $currency = new class implements Currency {
+            public function isEquals(Currency $currency): bool
+            {
+                return true;
+            }
         };
 
         $amount = 999999;
@@ -43,6 +49,10 @@ class MoneyTest extends TestCase
         new Money(
             amount: $amount,
             currency: new class implements Currency {
+                public function isEquals(Currency $currency): bool
+                {
+                    return true;
+                }
             },
         );
     }
@@ -52,6 +62,10 @@ class MoneyTest extends TestCase
     {
         $amount = 10;
         $currency = new class implements Currency {
+            public function isEquals(Currency $currency): bool
+            {
+                return true;
+            }
         };
         $money = new Money(
             amount: $amount,
@@ -71,5 +85,37 @@ class MoneyTest extends TestCase
             expected: $expected,
             actual: $actual->amount,
         );
+    }
+
+    /** @test */
+    public function add_通貨が異なる場合、例外が返るべき(): void
+    {
+        $jpy = new class implements Currency {
+            public function isEquals(Currency $currency): bool
+            {
+                return get_class(object: $this) === get_class(object: $currency);
+            }
+        };
+
+        $usd = new class implements Currency {
+            public function isEquals(Currency $currency): bool
+            {
+                return get_class(object: $this) === get_class(object: $currency);
+            }
+        };
+
+        $yen_money = new Money(
+            amount: 999999,
+            currency: $jpy,
+        );
+        $dollar = new Money(
+            amount: 888888,
+            currency: $usd,
+        );
+
+        $this->expectException(exception: InvalidArgumentException::class);
+        $this->expectExceptionMessage(message: '通貨単位が違います');
+
+        $yen_money->add(other: $dollar);
     }
 }
