@@ -40,7 +40,10 @@ class HitPointTest extends TestCase
         $actual = $point->damage(damageAmount: $damageAmount);
 
         $expected = $value - $damageAmount;
-        $this->assertSame(expected: $expected, actual: $actual->value);
+        $this->assertSame(
+            expected: $expected,
+            actual: $actual->value
+        );
     }
 
     /** @test */
@@ -53,7 +56,10 @@ class HitPointTest extends TestCase
         $actual = $point->damage(damageAmount: $damageAmount);
 
         $expected = 0;
-        $this->assertSame(expected: $expected, actual: $actual->value);
+        $this->assertSame(
+            expected: $expected,
+            actual: $actual->value
+        );
     }
 
     /** @test */
@@ -66,7 +72,10 @@ class HitPointTest extends TestCase
         $actual = $point->recover(recoveryAmount: $recoverAmount);
 
         $expected = $value + $recoverAmount;
-        $this->assertSame(expected: $expected, actual: $actual->value);
+        $this->assertSame(
+            expected: $expected,
+            actual: $actual->value
+        );
     }
 
     /** @test */
@@ -79,6 +88,9 @@ class HitPointTest extends TestCase
         $actual = $point->recover(recoveryAmount: $damageAmount);
 
         $expected = 999;
-        $this->assertSame(expected: $expected, actual: $actual->value);
+        $this->assertSame(
+            expected: $expected,
+            actual: $actual->value
+        );
     }
 }

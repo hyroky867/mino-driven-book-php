@@ -10,17 +10,15 @@ class HitPoint
 {
     private const MIN = 0;
     private const MAX = 999;
-    public readonly int $value;
 
-    final public function __construct(int $value)
+    final public function __construct(public readonly int $value)
     {
-        if ($value < self::MIN) {
+        if ($this->value < self::MIN) {
             throw new InvalidArgumentException(message: self::MIN . '以上を指定してください');
         }
-        if (self::MAX < $value) {
+        if (self::MAX < $this->value) {
             throw new InvalidArgumentException(message: self::MAX . '以下を指定してください');
         }
-        $this->value = $value;
     }
 
     /** ダメージを受ける */
