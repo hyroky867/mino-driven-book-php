@@ -32,6 +32,12 @@
         <severity>4</severity>
     </rule>
 
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="160"/>
+        </properties>
+    </rule>
+
     <!-- チェックから除外するディレクトリ(Laravelの場合) -->
     <exclude-pattern>/.github/</exclude-pattern>
     <exclude-pattern>/docker/</exclude-pattern>
