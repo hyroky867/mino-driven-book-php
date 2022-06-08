@@ -16,4 +16,9 @@ class Money
             throw new InvalidArgumentException(message: '金額が0以上ではありません');
         }
     }
+
+    public function add(int $other): void
+    {
+        $this->amount += $other;
+    }
 }

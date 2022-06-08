@@ -46,4 +46,25 @@ class MoneyTest extends TestCase
             },
         );
     }
+
+    /** @test */
+    public function add_加算できるべき(): void
+    {
+        $amount = 10;
+        $money = new Money(
+            amount: $amount,
+            currency: new class implements Currency {
+            },
+        );
+
+        $other = 2;
+
+        $money->add(other: $other);
+
+        $expected = $amount + $other;
+        $this->assertSame(
+            expected: $expected,
+            actual: $money->amount,
+        );
+    }
 }
