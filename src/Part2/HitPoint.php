@@ -22,18 +22,18 @@ class HitPoint
     }
 
     /** ダメージを受ける */
-    public function damage(int $damageAmount): HitPoint
+    public function damage(int $damageAmount): self
     {
         $damaged = $this->value - $damageAmount;
         $corrected = $damaged < self::MIN ? self::MIN : $damaged;
-        return new HitPoint(value: $corrected);
+        return new self(value: $corrected);
     }
 
     /** 回復する */
-    public function recover(int $recoveryAmount): HitPoint
+    public function recover(int $recoveryAmount): self
     {
         $recovered = $this->value + $recoveryAmount;
         $corrected = self::MAX < $recovered ? self::MAX : $recovered;
-        return new HitPoint(value: $corrected);
+        return new self(value: $corrected);
     }
 }

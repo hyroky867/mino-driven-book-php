@@ -19,16 +19,16 @@ class AttackPower
     }
 
     /** 攻撃力を強化する */
-    public function reinForce(AttackPower $increment): AttackPower
+    public function reinForce(self $increment): self
     {
-        return new AttackPower(
+        return new self(
             value: ($this->value + $increment->value),
         );
     }
 
     /** 無力化する */
-    public function disable(): AttackPower
+    public function disable(): self
     {
-        return new AttackPower(value: self::MIN);
+        return new self(value: self::MIN);
     }
 }
