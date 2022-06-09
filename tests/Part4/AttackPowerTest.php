@@ -18,4 +18,34 @@ class AttackPowerTest extends TestCase
 
         new AttackPower(value: -1);
     }
+
+    /** @test */
+    public function reinForce_値が増えるべき(): void
+    {
+        $value = 20;
+        $power = new AttackPower(value: $value);
+
+        $increase = 10;
+        $power->reinForce(increment: $increase);
+
+        $expected = $value + $increase;
+        $this->assertSame(
+            expected: $expected,
+            actual: $power->value,
+        );
+    }
+
+    /** @test */
+    public function disable_値が最小になるべき(): void
+    {
+        $value = 20;
+        $power = new AttackPower(value: $value);
+
+        $power->disable();
+
+        $this->assertSame(
+            expected: 0,
+            actual: $power->value,
+        );
+    }
 }
