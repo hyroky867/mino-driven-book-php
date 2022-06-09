@@ -8,11 +8,26 @@ use InvalidArgumentException;
 
 class GiftPoint implements Point
 {
-    public function __construct(private readonly int $value)
+    private const STANDARD_MEMBERSHIP_POINT = 3000;
+    private const PREMIUM_MEMBERSHIP_POINT  = 10000;
+
+    private function __construct(private readonly int $value)
     {
         if ($this->value < self::MIN_POINT) {
             throw new InvalidArgumentException(message: 'ポイントが0以上ではありません。');
         }
+    }
+
+    /** 標準会員向けギフトポイント */
+    public static function forStandardMemberShip(): self
+    {
+        return new GiftPoint(value: self::STANDARD_MEMBERSHIP_POINT);
+    }
+
+    /** プレミアム会員向け入会ギフトポイント */
+    public static function forPremiumMemberShip(): self
+    {
+        return new GiftPoint(value: self::PREMIUM_MEMBERSHIP_POINT);
     }
 
     /** ポイントを加算する */
