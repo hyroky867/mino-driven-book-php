@@ -17,14 +17,14 @@ class Money
         }
     }
 
-    public function add(Money $other): Money
+    public function add(self $other): self
     {
         if ($this->currency->isEquals(currency: $other->currency) === false) {
             throw new InvalidArgumentException(message: '通貨単位が違います');
         }
 
         $added = $this->amount + $other->amount;
-        return new Money(
+        return new self(
             amount: $added,
             currency: $this->currency,
         );
