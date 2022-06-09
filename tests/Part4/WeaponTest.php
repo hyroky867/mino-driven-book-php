@@ -23,7 +23,6 @@ class WeaponTest extends TestCase
             increment: new AttackPower(value: $increment),
         );
 
-
         $expected = $first_value + $increment;
         $this->assertSame(
             expected: $expected,
