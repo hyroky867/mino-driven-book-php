@@ -11,7 +11,7 @@ class AttackPower
     private const MIN = 0;
 
     public function __construct(
-        public int $value,
+        public readonly int $value,
     ) {
         if ($this->value < self::MIN) {
             throw new InvalidArgumentException();
@@ -19,14 +19,16 @@ class AttackPower
     }
 
     /** 攻撃力を強化する */
-    public function reinForce(int $increment): void
+    public function reinForce(AttackPower $increment): AttackPower
     {
-        $this->value += $increment;
+        return new AttackPower(
+            value: ($this->value + $increment->value),
+        );
     }
 
     /** 無力化する */
-    public function disable(): void
+    public function disable(): AttackPower
     {
-        $this->value = self::MIN;
+        return new AttackPower(value: self::MIN);
     }
 }

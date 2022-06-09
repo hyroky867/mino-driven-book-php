@@ -26,12 +26,14 @@ class AttackPowerTest extends TestCase
         $power = new AttackPower(value: $value);
 
         $increase = 10;
-        $power->reinForce(increment: $increase);
+        $actual = $power->reinForce(
+            increment: new AttackPower(value: $increase),
+        );
 
         $expected = $value + $increase;
         $this->assertSame(
             expected: $expected,
-            actual: $power->value,
+            actual: $actual->value,
         );
     }
 
@@ -41,11 +43,11 @@ class AttackPowerTest extends TestCase
         $value = 20;
         $power = new AttackPower(value: $value);
 
-        $power->disable();
+        $actual = $power->disable();
 
         $this->assertSame(
             expected: 0,
-            actual: $power->value,
+            actual: $actual->value,
         );
     }
 }
