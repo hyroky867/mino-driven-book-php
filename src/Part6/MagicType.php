@@ -11,4 +11,7 @@ enum MagicType
 
     // 紫電。雷の魔法。
     case SHIDEN;
+
+    // 地獄の業火
+    case HELL_FIRE;
 }
