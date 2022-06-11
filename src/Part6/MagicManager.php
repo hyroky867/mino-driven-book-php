@@ -19,4 +19,21 @@ class MagicManager
         }
         return $name;
     }
+
+    public function costMagicPoint(
+        MagicType $magicType,
+        Member $member
+    ): int {
+        $magicPoint = 0;
+
+        switch ($magicType) {
+            case MagicType::FIRE:
+                $magicPoint = 2;
+                break;
+            case MagicType::SHIDEN:
+                $magicPoint = 5 + (int) ($member->level * 0.2);
+                break;
+        }
+        return $magicPoint;
+    }
 }

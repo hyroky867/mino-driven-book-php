@@ -6,15 +6,23 @@ namespace Test\Part6;
 
 use App\Part6\MagicManager;
 use App\Part6\MagicType;
+use App\Part6\Member;
 use PHPUnit\Framework\TestCase;
 
 class MagicManagerTest extends TestCase
 {
+    private MagicManager $manager;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->manager = new MagicManager();
+    }
+
     /** @test */
     public function getName_炎の魔法の名前が取得できるべき(): void
     {
-        $manager = new MagicManager();
-        $actual = $manager->getName(magicType: MagicType::FIRE);
+        $actual = $this->manager->getName(magicType: MagicType::FIRE);
 
         $this->assertSame(
             expected: 'ファイア',
@@ -25,11 +33,46 @@ class MagicManagerTest extends TestCase
     /** @test */
     public function getName_雷の魔法の名前が取得できるべき(): void
     {
-        $manager = new MagicManager();
-        $actual = $manager->getName(magicType: MagicType::SHIDEN);
+        $actual = $this->manager->getName(magicType: MagicType::SHIDEN);
 
         $this->assertSame(
             expected: '紫電',
+            actual: $actual,
+        );
+    }
+
+    /** @test */
+    public function costMagicPoint_炎の魔法の場合(): void
+    {
+        $level = 10;
+        $actual = $this->manager->costMagicPoint(
+            magicType: MagicType::FIRE,
+            member: new Member(
+                level: $level,
+                agility: 999999,
+            ),
+        );
+
+        $this->assertSame(
+            expected: 2,
+            actual: $actual,
+        );
+    }
+
+    /** @test */
+    public function costMagicPoint_雷の魔法の場合(): void
+    {
+        $level = 10;
+        $actual = $this->manager->costMagicPoint(
+            magicType: MagicType::SHIDEN,
+            member: new Member(
+                level: $level,
+                agility: 999999,
+            ),
+        );
+
+        $this->assertSame(
+            expected: 7,
             actual: $actual,
         );
     }
