@@ -76,4 +76,40 @@ class MagicManagerTest extends TestCase
             actual: $actual,
         );
     }
+
+    /** @test */
+    public function attackPower_炎の魔法の場合(): void
+    {
+        $level = 10;
+        $actual = $this->manager->attackPower(
+            magicType: MagicType::FIRE,
+            member: new Member(
+                level: $level,
+                agility: 999999,
+            ),
+        );
+
+        $this->assertSame(
+            expected: 25,
+            actual: $actual,
+        );
+    }
+
+    /** @test */
+    public function attackPower_雷の魔法の場合(): void
+    {
+        $agility = 10;
+        $actual = $this->manager->attackPower(
+            magicType: MagicType::SHIDEN,
+            member: new Member(
+                level: 999999,
+                agility: $agility,
+            ),
+        );
+
+        $this->assertSame(
+            expected: 65,
+            actual: $actual,
+        );
+    }
 }

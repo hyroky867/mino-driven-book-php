@@ -36,4 +36,21 @@ class MagicManager
         }
         return $magicPoint;
     }
+
+    public function attackPower(
+        MagicType $magicType,
+        Member $member
+    ): int {
+        $attackPower = 0;
+
+        switch ($magicType) {
+            case MagicType::FIRE:
+                $attackPower = 20 + (int) ($member->level * 0.5);
+                break;
+            case MagicType::SHIDEN:
+                $attackPower = 50 + (int) ($member->agility * 1.5);
+                break;
+        }
+        return $attackPower;
+    }
 }
