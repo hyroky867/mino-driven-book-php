@@ -50,6 +50,8 @@ class MagicManagerTest extends TestCase
             member: new Member(
                 level: $level,
                 agility: 999999,
+                magicAttack: 888888,
+                vitality: 777777,
             ),
         );
 
@@ -68,6 +70,8 @@ class MagicManagerTest extends TestCase
             member: new Member(
                 level: $level,
                 agility: 999999,
+                magicAttack: 888888,
+                vitality: 777777,
             ),
         );
 
@@ -86,6 +90,8 @@ class MagicManagerTest extends TestCase
             member: new Member(
                 level: $level,
                 agility: 999999,
+                magicAttack: 888888,
+                vitality: 777777,
             ),
         );
 
@@ -104,6 +110,8 @@ class MagicManagerTest extends TestCase
             member: new Member(
                 level: 999999,
                 agility: $agility,
+                magicAttack: 888888,
+                vitality: 777777,
             ),
         );
 

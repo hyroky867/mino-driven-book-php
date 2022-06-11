@@ -9,6 +9,8 @@ class Member
     public function __construct(
         public readonly int $level,
         public readonly int $agility,
+        public readonly int $magicAttack,
+        public readonly int $vitality,
     ) {
     }
 }
