@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Part6;
 
-class Rectangle
+class Rectangle implements Shape
 {
     public function __construct(
         private readonly int|float $width,
