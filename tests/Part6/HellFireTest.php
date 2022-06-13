@@ -42,7 +42,7 @@ class HellFireTest extends TestCase
 
         $this->assertSame(
             expected: 16,
-            actual: $magic->costMagicPoint(),
+            actual: $magic->costMagicPoint()->value,
         );
     }
 
@@ -60,7 +60,7 @@ class HellFireTest extends TestCase
 
         $this->assertSame(
             expected: 225,
-            actual: $magic->attackPower(),
+            actual: $magic->attackPower()->value,
         );
     }
 
@@ -78,7 +78,7 @@ class HellFireTest extends TestCase
 
         $this->assertSame(
             expected: 24,
-            actual: $magic->costTechnicalPoint(),
+            actual: $magic->costTechnicalPoint()->value,
         );
     }
 }

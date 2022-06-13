@@ -15,18 +15,20 @@ class HellFire implements Magic
         return '地獄の業火';
     }
 
-    public function costMagicPoint(): int
+    public function costMagicPoint(): MagicPoint
     {
-        return 16;
+        return new MagicPoint(value: 16);
     }
 
-    public function attackPower(): int
+    public function attackPower(): AttackPower
     {
-        return 200 + (int) (($this->member->magicAttack * 0.5) + ($this->member->vitality * 2));
+        $value = 200 + (int) (($this->member->magicAttack * 0.5) + ($this->member->vitality * 2));
+        return new AttackPower(value: $value);
     }
 
-    public function costTechnicalPoint(): int
+    public function costTechnicalPoint(): TechnicalPoint
     {
-        return 20 + (int) ($this->member->level * 0.4);
+        $value = 20 + (int) ($this->member->level * 0.4);
+        return new TechnicalPoint(value: $value);
     }
 }
