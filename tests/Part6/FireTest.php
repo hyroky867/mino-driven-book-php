@@ -42,7 +42,7 @@ class FireTest extends TestCase
 
         $this->assertSame(
             expected: 2,
-            actual: $magic->costMagicPoint(),
+            actual: $magic->costMagicPoint()->value,
         );
     }
 
@@ -60,7 +60,7 @@ class FireTest extends TestCase
 
         $this->assertSame(
             expected: 25,
-            actual: $magic->attackPower(),
+            actual: $magic->attackPower()->value,
         );
     }
 
@@ -78,7 +78,7 @@ class FireTest extends TestCase
 
         $this->assertSame(
             expected: 0,
-            actual: $magic->costTechnicalPoint(),
+            actual: $magic->costTechnicalPoint()->value,
         );
     }
 }

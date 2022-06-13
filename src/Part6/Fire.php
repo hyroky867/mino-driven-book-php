@@ -15,18 +15,19 @@ class Fire implements Magic
         return 'ファイア';
     }
 
-    public function costMagicPoint(): int
+    public function costMagicPoint(): MagicPoint
     {
-        return 2;
+        return new MagicPoint(value: 2);
     }
 
-    public function attackPower(): int
+    public function attackPower(): AttackPower
     {
-        return 20 + (int) ($this->member->level * 0.5);
+        $value = 20 + (int) ($this->member->level * 0.5);
+        return new AttackPower(value: $value);
     }
 
-    public function costTechnicalPoint(): int
+    public function costTechnicalPoint(): TechnicalPoint
     {
-        return 0;
+        return new TechnicalPoint(value: 0);
     }
 }
