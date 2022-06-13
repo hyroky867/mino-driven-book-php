@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Test\Part6;
+namespace Test\Part6\Chapter2;
 
-use App\Part6\HellFire;
-use App\Part6\Member;
+use App\Part6\Chapter2\Fire;
+use App\Part6\Chapter2\Member;
 use PHPUnit\Framework\TestCase;
 
-class HellFireTest extends TestCase
+class FireTest extends TestCase
 {
     /** @test */
     public function name(): void
     {
-        $magic = new HellFire(
+        $magic = new Fire(
             member: new Member(
                 level: 10,
                 agility: 10,
@@ -23,7 +23,7 @@ class HellFireTest extends TestCase
         );
 
         $this->assertSame(
-            expected: '地獄の業火',
+            expected: 'ファイア',
             actual: $magic->name(),
         );
     }
@@ -31,7 +31,7 @@ class HellFireTest extends TestCase
     /** @test */
     public function costMagicPoint(): void
     {
-        $magic = new HellFire(
+        $magic = new Fire(
             member: new Member(
                 level: 10,
                 agility: 10,
@@ -41,7 +41,7 @@ class HellFireTest extends TestCase
         );
 
         $this->assertSame(
-            expected: 16,
+            expected: 2,
             actual: $magic->costMagicPoint()->value,
         );
     }
@@ -49,7 +49,7 @@ class HellFireTest extends TestCase
     /** @test */
     public function attackPower(): void
     {
-        $magic = new HellFire(
+        $magic = new Fire(
             member: new Member(
                 level: 10,
                 agility: 10,
@@ -59,7 +59,7 @@ class HellFireTest extends TestCase
         );
 
         $this->assertSame(
-            expected: 225,
+            expected: 25,
             actual: $magic->attackPower()->value,
         );
     }
@@ -67,7 +67,7 @@ class HellFireTest extends TestCase
     /** @test */
     public function costTechnicalPoint(): void
     {
-        $magic = new HellFire(
+        $magic = new Fire(
             member: new Member(
                 level: 10,
                 agility: 10,
@@ -77,7 +77,7 @@ class HellFireTest extends TestCase
         );
 
         $this->assertSame(
-            expected: 24,
+            expected: 0,
             actual: $magic->costTechnicalPoint()->value,
         );
     }

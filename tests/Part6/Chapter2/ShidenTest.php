@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Test\Part6;
+namespace Test\Part6\Chapter2;
 
-use App\Part6\Member;
-use App\Part6\Shiden;
+use App\Part6\Chapter2\Member;
+use App\Part6\Chapter2\Shiden;
 use PHPUnit\Framework\TestCase;
 
 class ShidenTest extends TestCase

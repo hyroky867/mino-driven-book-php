@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Test\Part6;
+namespace Test\Part6\Chapter2;
 
-use App\Part6\Circle;
+use App\Part6\Chapter2\Circle;
 use PHPUnit\Framework\TestCase;
 
 class CircleTest extends TestCase

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Test\Part6;
+namespace Test\Part6\Chapter2;
 
-use App\Part6\MagicManager;
-use App\Part6\MagicType;
-use App\Part6\Member;
+use App\Part6\Chapter2\MagicManager;
+use App\Part6\Chapter2\MagicType;
+use App\Part6\Chapter2\Member;
 use PHPUnit\Framework\TestCase;
 
 class MagicManagerTest extends TestCase

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Test\Part6;
+namespace Test\Part6\Chapter2;
 
-use App\Part6\Rectangle;
+use App\Part6\Chapter2\Rectangle;
 use PHPUnit\Framework\TestCase;
 
 class RectangleTest extends TestCase
