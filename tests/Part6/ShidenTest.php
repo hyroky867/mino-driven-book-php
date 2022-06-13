@@ -42,7 +42,7 @@ class ShidenTest extends TestCase
 
         $this->assertSame(
             expected: 7,
-            actual: $magic->costMagicPoint(),
+            actual: $magic->costMagicPoint()->value,
         );
     }
 
@@ -60,7 +60,7 @@ class ShidenTest extends TestCase
 
         $this->assertSame(
             expected: 65,
-            actual: $magic->attackPower(),
+            actual: $magic->attackPower()->value,
         );
     }
 
@@ -78,7 +78,7 @@ class ShidenTest extends TestCase
 
         $this->assertSame(
             expected: 5,
-            actual: $magic->costTechnicalPoint(),
+            actual: $magic->costTechnicalPoint()->value,
         );
     }
 }

@@ -15,18 +15,20 @@ class Shiden implements Magic
         return '紫電';
     }
 
-    public function costMagicPoint(): int
+    public function costMagicPoint(): MagicPoint
     {
-        return 5 + (int) ($this->member->level * 0.2);
+        $value = 5 + (int) ($this->member->level * 0.2);
+        return new MagicPoint(value: $value);
     }
 
-    public function attackPower(): int
+    public function attackPower(): AttackPower
     {
-        return 50 + (int) ($this->member->agility * 1.5);
+        $value = 50 + (int) ($this->member->agility * 1.5);
+        return new AttackPower(value: $value);
     }
 
-    public function costTechnicalPoint(): int
+    public function costTechnicalPoint(): TechnicalPoint
     {
-        return 5;
+        return new TechnicalPoint(value: 5);
     }
 }
