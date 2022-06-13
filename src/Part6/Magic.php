@@ -8,9 +8,9 @@ interface Magic
 {
     public function name(): string;
 
-    public function costMagicPoint(): int;
+    public function costMagicPoint(): MagicPoint;
 
-    public function attackPower(): int;
+    public function attackPower(): AttackPower;
 
-    public function costTechnicalPoint(): int;
+    public function costTechnicalPoint(): TechnicalPoint;
 }
