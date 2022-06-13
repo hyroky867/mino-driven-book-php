@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test\Unit\Part2;
+namespace Test\Part2;
 
 use App\Part2\HitPoint;
 use InvalidArgumentException;
