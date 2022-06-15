@@ -19,11 +19,23 @@ class PremiumRatesTest extends TestCase
     }
 
     /** @test */
-    public function 値を格納でき取得できるべき(): void
+    public function fee(): void
     {
         $actual = $this->money->fee();
 
         $expected = new Money(amount: 12000);
+        $this->assertEquals(
+            expected: $expected,
+            actual: $actual,
+        );
+    }
+
+    /** @test */
+    public function busySeasonFee(): void
+    {
+        $actual = $this->money->busySeasonFee();
+
+        $expected = new Money(amount: 17000);
         $this->assertEquals(
             expected: $expected,
             actual: $actual,
