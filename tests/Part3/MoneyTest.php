@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test\Unit\Part3;
+namespace Test\Part3;
 
 use App\Part3\Currency;
 use App\Part3\Money;
