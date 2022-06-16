@@ -11,10 +11,15 @@ abstract class DiscountBase
 
     public function getDiscountedPrice(): int
     {
-        $discountedPrice = $this->price - 300;
+        $discountedPrice = $this->price - $this->discountCharge();
         if ($discountedPrice < 0) {
             $discountedPrice = 0;
         }
         return $discountedPrice;
+    }
+
+    protected function discountCharge(): int
+    {
+        return 300;
     }
 }
