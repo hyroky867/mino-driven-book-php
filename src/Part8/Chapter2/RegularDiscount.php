@@ -10,12 +10,8 @@ class RegularDiscount extends DiscountBase
     {
     }
 
-    public function getDiscountedPrice(): int
+    protected function discountCharge(): int
     {
-        $discountedPrice = $this->price - 400;
-        if ($discountedPrice < 0) {
-            $discountedPrice = 0;
-        }
-        return $discountedPrice;
+        return 400;
     }
 }
