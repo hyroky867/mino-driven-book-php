@@ -10,6 +10,7 @@ class Product
         public readonly int $id,
         public readonly string $name,
         public readonly int $price,
+        public readonly bool $canDiscount,
     ) {
     }
 }

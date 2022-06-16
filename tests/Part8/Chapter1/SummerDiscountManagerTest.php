@@ -6,18 +6,18 @@ namespace Test\Part8\Chapter1;
 
 use App\Part8\Chapter1\DiscountManager;
 use App\Part8\Chapter1\Product;
-use App\Part8\Chapter1\ProductDiscount;
+use App\Part8\Chapter1\SummerDiscountManager;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class DiscountManagerTest extends TestCase
+class SummerDiscountManagerTest extends TestCase
 {
-    private DiscountManager $manager;
+    private SummerDiscountManager $manager;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new DiscountManager();
+        $this->manager = new SummerDiscountManager(discountManager: new DiscountManager());
     }
 
     /** @test */
@@ -31,10 +31,6 @@ class DiscountManagerTest extends TestCase
                 id: -1,
                 name: 'hoge',
                 price: 999999,
-                canDiscount: false,
-            ),
-            productDiscount: new ProductDiscount(
-                id: 999999,
                 canDiscount: false,
             ),
         );
@@ -53,50 +49,6 @@ class DiscountManagerTest extends TestCase
                 price: 888888,
                 canDiscount: false,
             ),
-            productDiscount: new ProductDiscount(
-                id: 777777,
-                canDiscount: false,
-            ),
-        );
-    }
-
-    /** @test */
-    public function 商品の値段が0よりも小さい場合、例外が返るべき(): void
-    {
-        $this->expectException(exception: InvalidArgumentException::class);
-        $this->expectExceptionMessage(message: '');
-
-        $this->manager->add(
-            product: new Product(
-                id: 999999,
-                name: 'hoge',
-                price: -1,
-                canDiscount: false,
-            ),
-            productDiscount: new ProductDiscount(
-                id: 777777,
-                canDiscount: false,
-            ),
-        );
-    }
-
-    /** @test */
-    public function 商品と割引データのIDが異なる場合、例外が返るべき(): void
-    {
-        $this->expectException(exception: InvalidArgumentException::class);
-        $this->expectExceptionMessage(message: '');
-
-        $this->manager->add(
-            product: new Product(
-                id: 999999,
-                name: 'hoge',
-                price: 888888,
-                canDiscount: false,
-            ),
-            productDiscount: new ProductDiscount(
-                id: 777777,
-                canDiscount: false,
-            ),
         );
     }
 
@@ -108,11 +60,7 @@ class DiscountManagerTest extends TestCase
             product: new Product(
                 id: $id,
                 name: 'hoge',
-                price: 20300,
-                canDiscount: false,
-            ),
-            productDiscount: new ProductDiscount(
-                id: $id,
+                price: 30299,
                 canDiscount: true,
             ),
         );
@@ -128,11 +76,7 @@ class DiscountManagerTest extends TestCase
             product: new Product(
                 id: $id,
                 name: 'hoge',
-                price: 20301,
-                canDiscount: false,
-            ),
-            productDiscount: new ProductDiscount(
-                id: $id,
+                price: 30300,
                 canDiscount: true,
             ),
         );
@@ -148,11 +92,7 @@ class DiscountManagerTest extends TestCase
             product: new Product(
                 id: $id,
                 name: 'hoge',
-                price: 20000,
-                canDiscount: false,
-            ),
-            productDiscount: new ProductDiscount(
-                id: $id,
+                price: 29999,
                 canDiscount: false,
             ),
         );
@@ -168,11 +108,7 @@ class DiscountManagerTest extends TestCase
             product: new Product(
                 id: $id,
                 name: 'hoge',
-                price: 20001,
-                canDiscount: false,
-            ),
-            productDiscount: new ProductDiscount(
-                id: $id,
+                price: 30000,
                 canDiscount: false,
             ),
         );

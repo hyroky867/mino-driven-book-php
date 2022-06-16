@@ -11,7 +11,7 @@ class DiscountManager
     /** @var array<Product> $discountProducts */
     public array $discountProducts = [];
 
-    private int $totalPrice = 0;
+    public int $totalPrice = 0;
 
     public function add(
         Product $product,
