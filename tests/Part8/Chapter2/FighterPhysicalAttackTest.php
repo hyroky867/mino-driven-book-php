@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Test\Part8\Chapter2;
 
 use App\Part8\Chapter2\FighterPhysicalAttack;
+use App\Part8\Chapter2\PhysicalAttack;
 use PHPUnit\Framework\TestCase;
 
 class FighterPhysicalAttackTest extends TestCase
@@ -14,7 +15,9 @@ class FighterPhysicalAttackTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->attack = new FighterPhysicalAttack();
+        $this->attack = new FighterPhysicalAttack(
+            physicalAttack: new PhysicalAttack(),
+        );
     }
 
     /** @test */
