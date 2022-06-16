@@ -18,4 +18,56 @@ class SellingPriceTest extends TestCase
 
         new SellingPrice(amount: -1);
     }
+
+    /** @test */
+    public function calcDeliveryCharge_配送料上限より小さい場合、0が返るべき(): void
+    {
+        $price = new SellingPrice(amount: 1000);
+
+        $actual = $price->calcDeliveryCharge();
+
+        $this->assertSame(
+            expected: 0,
+            actual: $actual,
+        );
+    }
+
+    /** @test */
+    public function calcDeliveryCharge_配送料上限より大きい場合、500が返るべき(): void
+    {
+        $price = new SellingPrice(amount: 1001);
+
+        $actual = $price->calcDeliveryCharge();
+
+        $this->assertSame(
+            expected: 0,
+            actual: $actual,
+        );
+    }
+
+    /** @test */
+    public function calcSellingCommission(): void
+    {
+        $price = new SellingPrice(amount: 1000);
+
+        $actual = $price->calcSellingCommission();
+
+        $this->assertSame(
+            expected: 50,
+            actual: $actual,
+        );
+    }
+
+    /** @test */
+    public function calcShoppingPoint(): void
+    {
+        $price = new SellingPrice(amount: 1000);
+
+        $actual = $price->calcShoppingPoint();
+
+        $this->assertSame(
+            expected: 10,
+            actual: $actual,
+        );
+    }
 }
