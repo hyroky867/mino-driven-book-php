@@ -8,8 +8,6 @@ use InvalidArgumentException;
 
 class SellingPrice
 {
-    private const DELIVERY_FREE_MIN = 1000;
-
     private const SHOPPING_POINT_RATE = 0.01;
 
     public function __construct(public readonly int $amount)
@@ -18,11 +16,6 @@ class SellingPrice
         if ($this->amount < $min_amount) {
             throw new InvalidArgumentException(message: "価格が{$min_amount}以上ではありません。");
         }
-    }
-
-    public function calcDeliveryCharge(): int
-    {
-        return self::DELIVERY_FREE_MIN <= $this->amount ? 0 : 500;
     }
 
     public function calcShoppingPoint(): int
