@@ -46,19 +46,6 @@ class SellingPriceTest extends TestCase
     }
 
     /** @test */
-    public function calcSellingCommission(): void
-    {
-        $price = new SellingPrice(amount: 1000);
-
-        $actual = $price->calcSellingCommission();
-
-        $this->assertSame(
-            expected: 50,
-            actual: $actual,
-        );
-    }
-
-    /** @test */
     public function calcShoppingPoint(): void
     {
         $price = new SellingPrice(amount: 1000);
