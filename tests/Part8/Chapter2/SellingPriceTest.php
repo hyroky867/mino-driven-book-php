@@ -18,17 +18,4 @@ class SellingPriceTest extends TestCase
 
         new SellingPrice(amount: -1);
     }
-
-    /** @test */
-    public function calcShoppingPoint(): void
-    {
-        $price = new SellingPrice(amount: 1000);
-
-        $actual = $price->calcShoppingPoint();
-
-        $this->assertSame(
-            expected: 10,
-            actual: $actual,
-        );
-    }
 }
