@@ -13,9 +13,6 @@ class GiftPoint implements Point
 
     private function __construct(private readonly int $value)
     {
-        if ($this->value < self::MIN_POINT) {
-            throw new InvalidArgumentException(message: 'ポイントが0以上ではありません。');
-        }
     }
 
     /** 標準会員向けギフトポイント */
