@@ -1,0 +1,17 @@
+{
+  "$schema": "vendor/infection/infection/resources/schema.json",
+  "source": {
+    "directories": [
+      "./src"
+    ]
+  },
+  "mutators": {
+    "@default": true,
+    "Identical": false,
+    "LessThan": false,
+    "LessThanOrEqualTo": false,
+    "DecrementInteger": false,
+    "MethodCallRemoval": false,
+    "LessThanNegotiation": false
+  }
+}

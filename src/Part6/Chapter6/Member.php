@@ -11,8 +11,4 @@ class Member
         public int $magicPoint,
     ) {
     }
-
-    public function addState(StateType $state): void
-    {
-    }
 }

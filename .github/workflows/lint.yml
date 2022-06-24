@@ -15,8 +15,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          coverage: none
-          tools: composer, cs2pr, phpcs, phpstan
+          coverage: pcov
+          tools: composer:v2, cs2pr, phpcs, phpstan
 
       - name: Cache vendor
         id: cache
@@ -43,3 +43,6 @@ jobs:
 
       - name: PHPStan
         run: phpstan analyse --error-format=checkstyle --configuration=phpstan.neon | cs2pr
+
+      - name: Inspection
+        run: ./vendor/bin/infection -s --debug --logger-github -j2

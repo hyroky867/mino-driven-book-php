@@ -18,6 +18,5 @@ class HitPointDamage implements Damage
         }
 
         $this->member->hitPoint = 0;
-        $this->member->addState(state: StateType::DEAD);
     }
 }
