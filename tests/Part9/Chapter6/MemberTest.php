@@ -20,19 +20,19 @@ class MemberTest extends TestCase
 
         $member = new Member(
             head: new Equipment(
-                name: '',
+                name: 'head',
                 price: 999999,
                 defence: $head_defense,
                 magicDefence: 888888,
             ),
             body: new Equipment(
-                name: '',
+                name: 'body',
                 price: 999999,
                 defence: $body_defense,
                 magicDefence: 888888,
             ),
             arm: new Equipment(
-                name: '',
+                name: 'arm',
                 price: 999999,
                 defence: $arm_defence,
                 magicDefence: 888888,
