@@ -40,7 +40,6 @@ class MemberTest extends TestCase
             defence: $member_defence,
         );
 
-
         $this->assertSame(
             expected: $member_defence + $head_defense + $body_defense + $arm_defence,
             actual: $member->totalDefence(),
